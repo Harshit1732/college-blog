@@ -11,7 +11,7 @@ const postRoutes = require("./routes/post");
 const createRoutes = require("./routes/create");
 const searchRoutes = require("./routes/search");
 const req = require("express/lib/request");
-const MONGODB_URI = "mongodb://localhost:27017/collegeApp"
+const MONGODB_URI = "mongodb://0.0.0.0:27017/collegeApp"
 
 
 const store = new MongoDBStore({uri: MONGODB_URI, collection: 'sessions'})
@@ -34,6 +34,7 @@ app.get("/", (req, res) => { // const isLoggedIn = req.get('Cookie').split(";")[
 app.listen(3000, () => {
     console.log("Listening at 3000");
 });
+mongoose.set('strictQuery', false);
 
 mongoose.connect(MONGODB_URI, () => {
     console.log("connected to db");
